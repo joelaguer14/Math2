@@ -104,12 +104,12 @@ public class Math_2 {
            Long tiempoFPInicio=System.currentTimeMillis();
            Double fP=aproximeE_FP(n);
            Long tiempoFPFinal=System.currentTimeMillis();
-           Long tiempoFP=tiempoFPFinal-tiempoFPInicio;
+           Long tiempoFP=(tiempoFPFinal-tiempoFPInicio)*10000;
 
            Long tiempoFPConcurrenteInicio=System.currentTimeMillis();
            Double fPConcurrente=aproximeE_FPConcurrente(n);
            Long tiempoFPConcurrenteFinal=System.currentTimeMillis();
-           Long tiempoFPConcurrente=tiempoFPConcurrenteFinal-tiempoFPConcurrenteInicio;
+           Long tiempoFPConcurrente=(tiempoFPConcurrenteFinal-tiempoFPConcurrenteInicio)*10000;
          System.out.format(
                  "n=%2d Math.E=%1.16f, E_FP=%1.16f Tiempo: %d  E_FPConcurrente=%1.16f Tiempo: %d  %n",
                  n,
