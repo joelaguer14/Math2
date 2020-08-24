@@ -57,6 +57,16 @@ public class Math_2 {
                        .get()
                        .s();
    }
+    public static double aproximeE_FPConcurrente(int n){
+        return aproximeE_FPConcurrente(n, PRECISION);
+    }
+    public static double aproximeE_FPConcurrente(int n, double epsilon){
+        return    Stream.iterate( EState.initial(), EState::update  ).parallel()
+                .filter( state -> state.isFinal( n, epsilon ) )
+                .findFirst()
+                .get()
+                .s();
+    }
    ////////////////////////////////////////////////////////////////////////////
    /**
    * Version recursiva de cola, estado explicito e  inmutable
@@ -97,7 +107,7 @@ public class Math_2 {
            Long tiempoFP=tiempoFPFinal-tiempoFPInicio;
 
            Long tiempoFPConcurrenteInicio=System.currentTimeMillis();
-           Double fPConcurrente=aproximeE_FP(n);
+           Double fPConcurrente=aproximeE_FPConcurrente(n);
            Long tiempoFPConcurrenteFinal=System.currentTimeMillis();
            Long tiempoFPConcurrente=tiempoFPConcurrenteFinal-tiempoFPConcurrenteInicio;
          System.out.format(
